@@ -104,6 +104,7 @@ EOD;
     <div class="container text-center" style="position: relative; top: 50%; transform: translateY(-50%);">
         <h1 id="tagline">Massey Debate Invitationals</h1>
         <p class="lead">November 26th | 1800 Liberty St.</p>
+        <p>Sign ups coming soon</p>
         <br>
         <p style="margin-top:-0.7em;">
             <a href="https://facebook.com/ElectAlexWard9/" style="color:#FFFFFF"><i
@@ -116,7 +117,7 @@ EOD;
     </div>
 </header>
 
-<div>
+<div style="display: none">
     <section id="about" class="body-row" style="overflow: hidden;">
         <div class="object1" id="parallax-img" style="height: 70vh; margin: 5%;">
             <div class="subtitle">
