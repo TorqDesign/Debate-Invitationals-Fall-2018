@@ -27,11 +27,11 @@ header {
 	overflow: hidden;
 }
 body {
-	font-family: "Avenir";
+	font-family: "Playfair Display";
 }
 
 h1 {
-    font-family: "Avenir Next Bold";
+    font-family: "Old Standard TT";
 }
 
 .img1 {
@@ -121,7 +121,7 @@ h1 {
 }
 
 .background {
-	background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("../images/background.jpg") no-repeat center;
+	background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("../img/bg.jpg") no-repeat center;
 	background-size: cover;
 	overflow: hidden;
 	background-attachment: fixed;
@@ -270,7 +270,7 @@ p {
 }
 
 #tagline {
-	font-family: "Avenir Next Bold";
+	font-family: "Playfair Display";
 	font-size: 6em;
 }
 

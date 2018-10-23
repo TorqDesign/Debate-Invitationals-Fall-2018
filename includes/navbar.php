@@ -6,7 +6,7 @@ if($page != 'index.php'){
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark <?php echo !$otherPage ?: 'bg-dark'; ?> fixed-top" id="mainNav" style="transition: background 0.15s;">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="<?php echo $otherPage ? 'index.php' : '#page-top'; ?>">Alex Aggarwal</a>
+        <a class="navbar-brand js-scroll-trigger" href="<?php echo $otherPage ? 'index.php' : '#page-top'; ?>">Massey Debate</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
