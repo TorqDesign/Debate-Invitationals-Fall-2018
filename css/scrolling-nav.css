@@ -1,0 +1,407 @@
+@font-face {
+	font-family: "Avenir";
+	src: url(../fonts/avenir.ttf);
+
+}
+@font-face {
+	font-family: "Avenir Next Bold";
+	src: url(../fonts/avenir-next-bold.ttf);
+}
+
+header {
+  height: 100vh;
+  padding: 154px 0 100px;
+
+}
+
+@media (min-width: 992px) {
+  header {
+    padding: 156px 0 100px;
+  }
+}
+
+.footer-img {
+	background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("../images/background.jpg") no-repeat center;
+	background-size: cover;
+	background-attachment: fixed;
+	overflow: hidden;
+}
+body {
+	font-family: "Avenir";
+}
+
+h1 {
+    font-family: "Avenir Next Bold";
+}
+
+.img1 {
+	background: url("../images/tax.png") no-repeat center !important;
+}
+.img2 {
+	background: url("../images/apple.png") no-repeat center !important;
+}
+.img3 {
+	background: url("../images/infrastructure.png") no-repeat center !important;
+}
+.panel {
+	color: black;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+@media (max-width: 992px) {
+  .panel {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+.vert-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.bigicon {
+	font-size: 1.2em;
+}
+
+.zoomonhover {
+	opacity: 1;
+	-webkit-transition: opacity 0.4s; /* Safari */
+    transition: opacity 0.4s;
+}
+
+.zoomonhover:hover {
+	opacity: 0.5;
+
+}
+
+.newsitem {
+	color: black;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.newsimagecontainer {
+	display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.newsimage {
+	color: black;
+	padding-top: 7%;
+	padding-bottom: 7%;
+	padding-left: 7%;
+	padding-right: 7%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+	
+}
+
+@media (max-width: 992px) {
+  .newsitem {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
+.datetext{
+	font-size: 0.8em;
+	color:  #696969;
+	font-style: italic;
+	
+}
+
+.background {
+	background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("../images/background.jpg") no-repeat center;
+	background-size: cover;
+	overflow: hidden;
+	background-attachment: fixed;
+}
+.hero1 {
+	background: url("../images/windsor.jpg") no-repeat center;
+	background-size: cover;
+	overflow: hidden;
+	background-attachment: fixed;
+
+}
+.subtitle {
+	color: black;
+	padding-top: 10%;
+	padding-left: 5%;
+}
+
+.subtitle-alt {
+	color: black;
+	padding-top: 20%;
+	padding-left: 5%;
+}
+.feature-img {
+	width: 45em;
+	height: 25em;
+	background: url("../images/tax.png") no-repeat center;
+	background-size: cover;
+	z-index: 500;
+	box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+}
+.broll-img {
+	position: relative;
+	transform: translate(-10%,0px);
+	width: 20em;
+	height: 30em;
+	background: url("../images/windsor.jpg") no-repeat center;
+	background-size: cover;
+	z-index: 200;
+	box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+}
+.feature-txt {
+	padding: 5%;
+	border: 2px solid black;
+}
+.banner1 {
+	width: 100vw;
+	height: 80vh;
+	background: url("../images/anish.jpg") no-repeat center;
+	background-size: cover;
+	margin-top: 300px;
+	margin-right: 10%;
+}
+.banner2 {
+	background: url("../images/horz-site.jpg") no-repeat center;
+}
+.mobile-only {
+	display: none;
+}
+.desktop-only {
+	display: relative;
+}
+#news {
+	margin-top: 5%;
+
+}
+
+@media (max-width: 992px) {
+	.vert-center {
+		display: initial;
+	}
+	.subtitle {
+		padding: 0px;
+	}
+	.panel {
+		padding: 0px;
+	}
+	.subtitle-alt {
+		padding: 0px;
+	}
+	.outline-rect {
+		border-radius: 0px;
+		padding: 2em;
+	}
+	.broll-img {
+		display: none;
+	}
+
+	.feature-img-mobile {
+		background: url("../images/windsor.jpg") no-repeat center;
+		background-size: cover;
+		height: 70vw;
+		width: 100vw;
+		margin-bottom: 50px;
+	}
+	.mobile-only {
+		display: initial;
+	}
+	.desktop-only {
+		display: none;
+	}
+	.banner1 {
+		margin-top: 15%;
+	}
+	.banner2 {
+		margin-top: 15%;
+	}
+	.background {
+		background-attachment: scroll;
+	}
+	.footer-img {
+		background-attachment: scroll;
+	}
+
+}
+h2 {
+	font-size: 1.5em;
+	font-family: 'Avenir Next Bold', serif;
+}
+p {
+    font-family: 'Avenir', sans-serif;
+}
+
+.lead2 {
+	font-size: 1.1em !important;
+}
+
+.platform-text {
+	text-align: center;
+	line-height: 2;
+}
+.platform-text p {
+	text-align: justify;
+}
+.platform-center p {
+	text-align: center !important;
+}
+.object1 {
+	margin: 5%;
+}
+.text-center h1 {
+	font-family: "Avenir Next Bold";
+}
+.text-center p {
+	font-family: "Avenir";
+	font-size: 1.5em;
+}
+
+#tagline {
+	font-family: "Avenir Next Bold";
+	font-size: 6em;
+}
+
+@media (max-width: 992px) {
+	#tagline {
+		text-align: center;
+		font-size: 3.7em;
+	}
+}
+
+#gradient1 {
+	background: linear-gradient(to right, #0072ff, #00c6ff);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+#gradient2 {
+	background: linear-gradient(to right, #f46b45, #eea849);;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #FFFFFF;
+    opacity: 0.7; /* Firefox */
+}
+
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #FFFFFF;
+}
+
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+    color: #FFFFFF;
+}
+
+.info-col {
+	margin-top: -4em;
+	border-left: 1px solid #d7d7d7;
+	margin-left: 0em;
+	left: 5%;
+	padding-top: 13%;
+}
+
+.info-col-offset {
+	padding-left:10%;
+}
+
+@media (max-width: 992px) {
+	.info-col {
+		text-align: center;
+		padding-left: 0em;
+		margin-top: 0em;
+		border-left: none;
+		left: 0%;
+	}
+	
+	.info-col-offset {
+		padding-left:none;
+	}
+
+}
+
+.contact-button {
+	background-color: transparent; 
+	background-repeat:no-repeat; 
+	border-color:#FFFFFF;
+}
+
+.contact-button:hover{
+	background-color: #FFFFFF;
+	color: #000; /* Fallback for older browsers */
+    color: rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 992px) {
+    /*.col-md-border:not(:last-child) {
+        border-right: 1px solid #d7d7d7;
+    }*/
+    .col-md-border + .col-md-border {
+        border-left: 1px solid #d7d7d7;
+        margin-left: -1px;
+    }
+	
+}
+/* Platform Redesign CSS*/
+.platform-tiles-outer {
+	width: 30vh;
+	height: 30vh;
+    transition: all 0.2s;
+    margin-bottom: 10%;
+}
+.platform-tiles {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+	width: 20rem;
+	height: 20rem;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("../images/windsor.jpg") no-repeat center;
+    background-size: cover;
+    border-radius: 2%;
+}
+
+.platform-tiles-outer:hover {
+    transform: scale(1.1);
+}
+
+.platform-tiles-text {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    vertical-align: center;
+    text-align: center;
+    color: white;
+}
+@media (max-width: 992px) {
+    .platform-tiles-outer {
+        width: 90vw;
+        height: 90vw;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .platform-tiles {
+        width: 80%;
+        height: 80%;
+    }
+
+    .platform-tiles-outer:hover {
+        transform: translateX(-50%);
+    }
+}
