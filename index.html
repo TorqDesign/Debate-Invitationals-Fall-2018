@@ -1,51 +1,3 @@
-<?php
-function sqlQuery($queryString)
-{
-
-    $servername = "Anishinator.db.2545486.b18.hostedresource.net";
-    $username = "Anishinator";
-    $password = "Password123!";
-    $dbname = "Anishinator";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("<h1>Unable to establish a database connection.</h1>");
-    }
-
-    $result = $conn->query($queryString);
-
-    $conn->close();
-
-    return $result;
-}
-
-function returnWordsFromDateTime($dateTimeString)
-{
-    return date('F d, Y \a\t h:i a', strtotime($dateTimeString));
-}
-
-$template = <<<'EOD'
-					<br>
-				<div class="card">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-lg-9">
-							  <div class="newsitem">
-								<h3>%s</h3>
-								<p>%s <br><a href="%s">Read more</a></p>
-								<span class="datetext">%s</span>
-							  </div>
-							</div>
-							<div class="col-lg-3 newsimagecontainer"><img class="d-none d-lg-block newsimage" src="%s" style="height: 12em; width: 12em; border-radius: 25px; object-fit: cover;"></div>
-						 </div>
-					</div> 
-				</div>
-EOD;
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <!--https://codepen.io/karldanninger/pen/NwzMzN-->
@@ -95,10 +47,96 @@ EOD;
 
 </script>
 
-<?php require_once('includes/form_script.php'); ?>
+<script>
+$(document).ready(function() {
+    $('form').submit(function(event) {
+        console.log("START");
+        var formData = {
+            'name': $('input[name=name]').val(),
+            'email': $('input[name=email]').val(),
+			'phone': $('input[name=phone]').val(),
+            'message': $('textarea[name=message]').val()
+        };
+		
+		if($('#name').val().length == 0){
+			formData.name = null;
+		}
+		
+		if($('#email').val().length == 0){
+			formData.email = null;
+		}
+		
+		if($('#message').val().length == 0){
+			formData.message = null;
+		}
+		
+		formData.lawnCheck = $('input[name=lawnCheck]').is(":checked");
+		
+        $.ajax({
+            type: 'POST',
+            url: 'form_submit.php',
+            dataType: 'json',
+			data: formData,
+            encode: true
+        }).done(function(data) {
+            if (data['message'] == "Missing info") {
+                swal({
+                    title: "Missing Infomation",
+                    text: "Please ensure that you have filled in at least your name, email, and message.",
+                    icon: "error",
+                });
+            }
+            else if(data['message'] == "Invalid email"){
+                swal({
+                    title: "Invalid Email",
+                    text: "Please ensure that you submitted a valid email.",
+                    icon: "error",
+                });
+            }
+			else if(data['message'] == "Success"){
+				swal({
+                    title: "Success!",
+                    text: "Your message has been sent.",
+                    icon: "success",
+                });
+			}
+        });
+		event.preventDefault();
+    });
+});
+</script>
 
 <!-- Navigation -->
-<?php require_once('includes/navbar.php'); ?>
+<nav class="navbar navbar-expand-lg navbar-dark <?php echo !$otherPage ?: 'bg-dark'; ?> fixed-top" id="mainNav" style="transition: background 0.15s;">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="<?php echo $otherPage ? 'index.php' : '#page-top'; ?>">Massey Debate</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+<!--        <div class="collapse navbar-collapse" id="navbarResponsive"">-->
+<!--          <ul class="navbar-nav ml-auto">-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link js-scroll-trigger" href="--><?php //echo $otherPage ? 'index.php#' : '#'; ?><!--page-top">Home</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link js-scroll-trigger" href="--><?php //echo $otherPage ? 'index.php#' : '#'; ?><!--about">Goals</a>-->
+<!--            </li>-->
+<!--			<li class="nav-item">-->
+<!--              <a class="nav-link js-scroll-trigger" href="--><?php //echo $otherPage ? 'index.php#' : '#'; ?><!--news">News</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link js-scroll-trigger" href="--><?php //echo $otherPage ? 'index.php#' : '#'; ?><!--contact">Contact</a>-->
+<!--            </li>-->
+<!--			<li class="nav-item">-->
+<!--              <a class="nav-link js-scroll-trigger --><?php //echo $page != 'platform.php' ?: 'active'; ?><!--" href="platform.php">Platform</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link js-scroll-trigger --><?php //echo $page != 'aboutme.php' ?: 'active'; ?><!--" href="aboutme.php">About Me</a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+      </div>
+    </nav>
 
 <header class="bg-primary text-white background">
     <div class="container text-center" style="position: relative; top: 50%; transform: translateY(-50%);">
@@ -185,49 +223,7 @@ EOD;
             <div class="col-lg-12 mx-auto ">
                 <div class="panel">
                     <h1 style="text-align: center;">Latest News</h1>
-                    <?php
-                    $query_result = sqlQuery("SELECT id,post_date,post_content,post_title FROM wp_posts where post_status='publish' and post_type='post' order by id desc limit 5");
-
-                    if ($query_result->num_rows > 0) {
-                        // output data of each row
-                        while ($row = $query_result->fetch_assoc()) {
-                            $post_id = $row["id"];
-                            $thumbnailUrl = null;
-
-                            $query_result2 = sqlQuery(sprintf("SELECT meta_value FROM wp_postmeta WHERE post_id='%s' and meta_key='_thumbnail_id'", $post_id));
-
-                            if ($query_result2->num_rows > 0) {
-                                //has a picture
-                                $query_result_assoc = $query_result2->fetch_assoc();
-                                $thumbID = $query_result_assoc['meta_value'];
-
-                                $query_result3 = sqlQuery(sprintf("SELECT meta_value from wp_postmeta WHERE post_id=%s and meta_key='_wp_attached_file'", $thumbID));
-                                $query_result_assoc3 = $query_result3->fetch_assoc();
-                                $thumbnailUrl = "blog/wp-content/uploads/" . $query_result_assoc3['meta_value'];
-                            } else {
-                                $thumbnailUrl = "img/noimage.png";
-                            }
-
-                            //echo "id: " . $row["post_date"]. " - Name: " . $row["post_content"]. " " . $row["post_title"]. "<br>";
-                            $readmoreUrl = "blog/?p=" . $post_id;
-
-                            //fancy stuff if post is longer than 200 chars
-                            $post_content_trunc = substr($row["post_content"], 0, 200);
-
-                            if ($post_content_trunc != $row["post_content"]) {
-                                $post_content = $post_content_trunc . "...";
-                            } else {
-                                $post_content = $row["post_content"];
-                            }
-
-                            print(sprintf($template, $row["post_title"], $post_content, $readmoreUrl, returnWordsFromDateTime($row["post_date"]), $thumbnailUrl));
-
-                        }
-                    } else {
-                        echo "0 results";
-                    }
-
-                    ?>
+                   
                 </div>
 
             </div>
@@ -237,7 +233,66 @@ EOD;
     <br>
 
     <!-- Footer -->
-    <?php require_once('includes/footer.php'); ?>
+    <footer class="py-5 bg-dark footer-img">
+      <div class="container" style="color:#FFFFFF;" id="contact">
+		  <div class="row">
+			<div class="col-lg-12">
+				<h3>Get in touch!</h3>
+				<p>Fill in this form to request a lawn sign or learn more about our campaign!</p>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-7 col-md-border">
+				<form action="form_submit.php" method="POST">
+					<div class="row">
+					<div class="col">
+					  <label for="firstname">Name</label>
+					  <input type="text" id="name" name="name" class="form-control" placeholder="Name" style="background-color:transparent; color:white" required>
+					</div>
+					<div class="col">
+					<label for="email">Email</label>
+					  <input type="email" id="email" name="email" class="form-control" placeholder="Email" style="background-color:transparent; color:white" required>
+					</div>
+				  </div>
+				  <label for="phone">Phone</label>
+				  <input type="tel" id="phone" name="phone" class="form-control" placeholder="Phone Number" style="background-color:transparent; color:white">
+				  <div class="form-group" style="padding-top: 0.5em">
+					<label for="message">Message</label>
+					<textarea class="form-control" id="message" name="message" placeholder="Message" rows="5" style="background-color:transparent; color:white" required></textarea>
+				  </div>
+				  <div class="form-check">
+					<input type="checkbox" class="form-check-input" id="lawnCheck" name="lawnCheck" style="padding-bottom: 0.75em;">
+					<label class="form-check-label" for="lawnCheck" style="padding-bottom: 0.75em;">Yes! I would like a lawn sign (please include your address)</label>
+				  </div>
+				  <button type="submit" id="contactsubmit" class="contact-button btn btn-primary">Submit</button>
+				</form>
+			</div>
+			<br class="d-none d-lg-block"> 
+			<div class="info-col col-md-5">
+			  <div class="info-col-offset">
+				<h3>Email</h3>
+				<p>electalexward9@gmail.com</p>
+				<br>
+				<br class="d-none d-lg-block newsimage">
+				<h3>Social</h3>
+				<p>
+				<a href="https://facebook.com/ElectAlexWard9/" style="color:#FFFFFF"><i class="fab fa-facebook bigicon zoomonhover" style="margin-right:0.8em"></i></a>
+				<a href="https://twitter.com/ElectAlexWard9/" style="color:#FFFFFF"><i class="fab fa-twitter bigicon zoomonhover" style="margin-right:0.8em"></i></a>
+				<a href="mailto:Alex4UWard9@gmail.com" style="color:#FFFFFF"><i class="fas fa-envelope bigicon zoomonhover"></i></a>
+				</p>
+			  </div>
+			</div>
+		  </div>
+		  </div>
+		  <div class="row">
+			<div class="col-lg-12">
+				<br>
+				<p class="m-0 text-center text-white">Copyright &copy; 2018 Alex Aggarwal. Designed and Managed by <a href="https://torqdesign.ca" style="color: #FFFFFF">Torq Design</a>.</p>
+			 </div>
+		  </div>
+      </div>
+      <!-- /.container -->
+    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
