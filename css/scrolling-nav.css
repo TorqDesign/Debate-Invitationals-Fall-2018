@@ -35,7 +35,9 @@ h1 {
 }
 
 .img1 {
-	background: url("../images/tax.png") no-repeat center !important;
+	background: url("../images/1.jpg") no-repeat center !important;
+    -webkit-background-size: cover !important;
+    background-size: cover !important;
 }
 .img2 {
 	background: url("../images/apple.png") no-repeat center !important;
@@ -135,7 +137,7 @@ h1 {
 }
 .subtitle {
 	color: black;
-	padding-top: 10%;
+	padding-top: 5%;
 	padding-left: 5%;
 }
 
@@ -259,7 +261,7 @@ p {
 	text-align: center !important;
 }
 .object1 {
-	margin: 5%;
+	margin: 2%;
 }
 .text-center h1 {
 	font-family: "Avenir Next Bold";
